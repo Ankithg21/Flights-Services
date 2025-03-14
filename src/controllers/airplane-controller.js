@@ -3,7 +3,6 @@ const {StatusCodes} = require("http-status-codes");
 const {SuccessResponse, ErrorResponse} = require("../utils/common");
 async function createAirplane(req,res){
     try {
-        console.log(req.body);
         const airplane = await AirplaneService.createAirplane({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity
@@ -17,7 +16,7 @@ async function createAirplane(req,res){
         ErrorResponse.message = "Something went wrong while creating airplane";
         ErrorResponse.error = error;
         return res
-        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .status(error.statusCode)
         .json(ErrorResponse);
     }
 }
