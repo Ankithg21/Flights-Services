@@ -2,6 +2,7 @@ const {AirplaneService} = require("../services/index.js");
 const {StatusCodes} = require("http-status-codes");
 const {SuccessResponse, ErrorResponse} = require("../utils/common");
 const AppError = require("../utils/errors/app-error.js");
+
 async function createAirplane(req,res){
     try {
         const airplane = await AirplaneService.createAirplane({
