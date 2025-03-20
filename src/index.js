@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use("/api",apiRoutes);
 
-app.listen(serverConfig.PORT, async()=>{
+app.listen(serverConfig.PORT,()=>{
     console.log(`Server Running on port:${serverConfig.PORT}`);
     // const {City,Airport} = require("./models");
     // const nd = await City.findByPk(4);
