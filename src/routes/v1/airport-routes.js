@@ -28,10 +28,4 @@ router.delete(
     AirportController.destroyAirport
 );
 
-// /api/v1/airport/:id PATCH
-router.patch(
-    "/:id",
-    AirportController.updateAirport
-);
-
 module.exports = router;
