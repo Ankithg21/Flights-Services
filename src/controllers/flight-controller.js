@@ -42,7 +42,7 @@ async function getAllFlights(req,res){
         ErrorResponse.message = "Something went wrong while creating Flight";
         ErrorResponse.error = error;
         return res
-        .status(error.statusCode)
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
         .json(ErrorResponse);
     }
 };

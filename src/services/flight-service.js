@@ -23,6 +23,7 @@ async function createFlight(data){
 
 async function getAllFlights(query){
     let customFilters={};
+    let endingTripTime="23:59:00"
     if(query.trips){
         [departureAirportId, arrivalAirportId] = query.trips.split("-");
         customFilters.departureAirportId = departureAirportId;
@@ -31,7 +32,18 @@ async function getAllFlights(query){
     if(query.price){
         [minPrice,maxPrice] = query.price.split("-");
         customFilters.price={
-            [Op.between]:[minPrice,((maxPrice == undefined)?20000:maxPrize)],
+            [Op.between]:[minPrice,((maxPrice == undefined)?"20000":maxPrice)],
+        }
+    }
+    if(query.travellers){
+        customFilters.totalSeats={
+            [Op.gte]:query.travellers,
+        }
+    }
+    if(query.tripDate){
+        console.log(query.tripDate);
+        customFilters.departureTime={
+            [Op.between]:[query.tripDate,query.tripDate +' ' + endingTripTime],
         }
     }
     try {
