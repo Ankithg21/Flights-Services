@@ -10,7 +10,6 @@ function validateCreateRequest(req,res,next){
         .status(StatusCodes.BAD_REQUEST)
         .json(ErrorResponse);
     }
-
     if(!(req.body.code)){
         ErrorResponse.message="Something went wrong while creating airport code.";
         ErrorResponse.error= new AppError(["Airport Code not found in the incoming request"],StatusCodes.BAD_REQUEST);
